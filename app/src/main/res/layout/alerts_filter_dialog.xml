@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/design_bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/line_border"
+    android:minWidth="350dp"
+    android:minHeight="150dp"
+    android:orientation="vertical"
+    android:paddingBottom="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/txtDate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="start|center_vertical"
+                android:padding="5dp"
+                android:text="Start Time" />
+
+            <TextView
+                android:id="@+id/txt1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawablePadding="10dp"
+                android:gravity="center"
+                android:text="" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/txtTime"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="start|center_vertical"
+                android:padding="5dp"
+                android:text="End Time" />
+
+            <TextView
+                android:id="@+id/txt2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawablePadding="10dp"
+                android:gravity="center"
+                android:text="" />
+        </LinearLayout>
+
+        <ScrollView
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="150dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/over_speed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="05dp"
+                    android:text=" Over Speed" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/engine_on"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="05dp"
+                    android:text="  Engine On " />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/engine_off"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="05dp"
+                    android:text=" Engine Off " />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/low_battery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="05dp"
+                    android:text=" Low Battery " />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/enter_alarm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="05dp"
+                    android:text=" Enter Geofence Alarm" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/exit_alarm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="05dp"
+                    android:text=" Exit Geofence Alarm " />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/power_on"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="05dp"
+                    android:text=" Power On " />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/power_off"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="05dp"
+                    android:text=" Power Off" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/door_alarm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="05dp"
+                    android:text="  Door Alarm " />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/dissamble_alarm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="05dp"
+                    android:text=" Disassemble Alarm " />
+            </LinearLayout>
+        </ScrollView>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/spinner_border"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/vehicle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:spinnerMode="dropdown" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_keyboard_arrow_down_black_24dp" />
+
+    </RelativeLayout>
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/ok"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:text="OK" />
+
+            <Space
+                android:layout_height="wrap_content"
+                android:layout_width="20dp" />
+
+            <Button
+                android:id="@+id/cancel"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:text="Cancel"
+                app:backgroundTint="@color/dark_red" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+

@@ -1,0 +1,32 @@
+package com.mstech.rideiodriverlite.Model
+
+object SharedKey {
+
+    val ISLOGIN : String = "false"
+    val FIRSTNAME : String = "firstname"
+    val LASTNAME : String = "lastname"
+    val MOBILE : String = "mobile"
+    val EMAIL : String = "email"
+    val OWNER_ID: String ="ownerid"
+    val DRIVER_ID : String="driverid"
+    val MERCHANT_ID : String = "merchant_id"
+    val ADDRESS : String = "address"
+    val TRIPID : String = "tripid"
+    val TRIPSTART : String ="tripstart"
+    val COMPANIONID : String = "companionid"
+    val VEHICLENUMBER : String = "vehiclenumber"
+    val IMEI : String = "imei"
+    val TRIPINFO : String = "tripinfo"
+    val ADDGEOFENCE : String = "addgeofence"
+    val GEOFENCEID : String = "geofenceid"
+    val LATITUDE : String = "latitude"
+    val LONGITUDE : String = "longitude"
+    val RADIUS : String = "radius"
+    val SPEED : String = "speed"
+    val TOTALKM : String = "totalkm"
+    val PREVIOUSLATITUDE : String = "previouslatitude"
+    val PREVIOUSLONGITUDE : String = "previouslatitude"
+    val TEMPRADIUS : String = "tempradius"
+    val SPEEDAVAILABLE : String = "speedavailable"
+    val GEOFENCEAVAILABLE : String = "geofenceavailable"
+}
