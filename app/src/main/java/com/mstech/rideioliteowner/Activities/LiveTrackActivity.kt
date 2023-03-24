@@ -134,7 +134,7 @@ class LiveTrackActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.setOnInfoWindowClickListener(GoogleMap.OnInfoWindowClickListener { marker ->
             SPStaticUtils.put(SharedKey.IMEI, marker.snippet)
             val title = marker.snippet
-            startActivity(Intent(this,SingleVehicleTrack::class.java))
+            startActivity(Intent(this,SingleVehicleTrack::class.java).putExtra("latitude",marker.position.latitude).putExtra("longitude",marker.position.longitude))
             LogUtils.e(title)
         })
     }

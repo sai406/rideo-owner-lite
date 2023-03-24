@@ -1,12 +1,9 @@
 package com.mstech.rideioliteowner.Activities
 
-import androidx.appcompat.app.AppCompatActivity
-
 import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -15,10 +12,7 @@ import android.view.View
 import android.webkit.WebView
 import android.widget.RelativeLayout
 import android.widget.TextView
-import com.android.volley.AuthFailureError
-import com.android.volley.VolleyLog
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
+import androidx.appcompat.app.AppCompatActivity
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.NetworkUtils
 import com.blankj.utilcode.util.SPStaticUtils
@@ -36,11 +30,8 @@ import com.mstech.rideioliteowner.R
 import com.mstech.rideioliteowner.Utils.LatLngInterpolator
 import kotlinx.android.synthetic.main.custom_window_layout.view.*
 import org.json.JSONArray
-import org.json.JSONException
-import org.json.JSONObject
-import java.io.UnsupportedEncodingException
 
-class SingleVehicleTrack : AppCompatActivity(),OnMapReadyCallback {
+class SingleVehicleTrack : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private lateinit var statusTextView: TextView
     private lateinit var webView: WebView
@@ -60,32 +51,41 @@ class SingleVehicleTrack : AppCompatActivity(),OnMapReadyCallback {
     lateinit var endtrip: FloatingActionButton
     lateinit var map_layout: RelativeLayout
     lateinit var notrip: RelativeLayout
+    var latitude = -28.000290
+    var longitude = 153.430880
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_single_vehicle_track)
         map_layout = findViewById(R.id.map_layout)
         mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment!!.getMapAsync(this)
+        mapFragment.getMapAsync(this)
         statusTextView = findViewById<TextView>(R.id.statusTextView)
         webView = findViewById<WebView>(R.id.webView)
-            if (NetworkUtils.isConnected()) {
-                signalR()
-            } else {
-                ToastUtils.showShort("No Internet Connection")
-            }
+        try {
+            latitude = intent.extras?.getDouble("latitude")?:-28.000290
+            longitude = intent.extras?.getDouble("longitude")?: 153.430880
+        }catch (e: Exception){
+            e.printStackTrace()
+        }
+        if (NetworkUtils.isConnected()) {
+            signalR()
+        } else {
+            ToastUtils.showShort("No Internet Connection")
+        }
     }
+
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         // Add a marker in Sydney and move the camera
-        val latLng = LatLng(-28.000290, 153.430880)
-        googleMap!!.uiSettings.isMyLocationButtonEnabled = false
-        googleMap!!.uiSettings.isZoomControlsEnabled = true
+        val latLng = LatLng(latitude,longitude )
+        googleMap.uiSettings.isMyLocationButtonEnabled = false
+        googleMap.uiSettings.isZoomControlsEnabled = true
 
         // Updates the location and zoom of the MapView
         // Updates the location and zoom of the MapView
         val cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 15f)
-        googleMap!!.moveCamera(cameraUpdate)
+        googleMap.moveCamera(cameraUpdate)
         val customInfoWindow = CustomInfoWindowGoogleMap(this)
 
         mMap.setInfoWindowAdapter(customInfoWindow)
@@ -104,7 +104,7 @@ class SingleVehicleTrack : AppCompatActivity(),OnMapReadyCallback {
         chatHub.on("UpdatedVehicleLiveData") { args ->
 //            Log.d(logTag, args.toString())
             LogUtils.e(args.toString())
-            
+
             var array = JSONArray(args.toString())
             for (i in 0..array.length() - 1) {
                 var obj = array.getJSONObject(i)
@@ -117,7 +117,7 @@ class SingleVehicleTrack : AppCompatActivity(),OnMapReadyCallback {
 //                    var ignition = obj.getString("IgnitionStatus")
 //                    var status = obj.getString("VehicleEvent")
                     var Imei = obj.getString("DriverId")
-                    if(Imei.equals(SPStaticUtils.getString(SharedKey.IMEI, ""))){
+                    if (Imei.equals(SPStaticUtils.getString(SharedKey.IMEI, ""))) {
                         startCar(lat, lon, angle, date, speed)
                         val info = InfoWindowData(
                             SPStaticUtils.getString(SharedKey.FIRSTNAME, ""),
@@ -128,7 +128,7 @@ class SingleVehicleTrack : AppCompatActivity(),OnMapReadyCallback {
                     }
 
                 } catch (e: Exception) {
-e.printStackTrace()
+                    e.printStackTrace()
                 }
 
             }
